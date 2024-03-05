@@ -14,7 +14,6 @@ function App() {
         <Route path='/logout' element={<h1>Logout Component </h1>} />
         <Route path='/profile' element={<h1>Profile Component</h1>} />
       </Routes>
-     
       </BrowserRouter>
       <Footer />
     </div>
