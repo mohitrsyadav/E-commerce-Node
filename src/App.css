@@ -1,3 +1,4 @@
+/* Navs Css start=============> */
 .nav-ul li{
   display: inline-block;
   padding: 10px;
@@ -14,6 +15,8 @@
   margin:0;
   background-color: skyblue;
 }
+/* Navs Css End=============> */
+/* Footer Css Start=============> */
 .footer{
   position: absolute;
   bottom: 0;
@@ -21,6 +24,27 @@
   width: 100%;
   background-color: skyblue;
 }
+/* Footer Css End=============> */
+/* Sign Up Css Start=============> */
+.resister{
+  margin-left: 30%;
+}
+.inputBox{
+  display: block;;
+  margin: 25px;
+  padding: 7px;
+  width: 300px;
+  border: 1px solid skyblue;
+}
+.appButton{
+  margin: 25px;
+  padding: 10px;
+  width: 150px;
+  background-color: skyblue;
+  border: 1px solid;
+  cursor: pointer;
+}
+/* Sign Up Css Ens=============> */
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
