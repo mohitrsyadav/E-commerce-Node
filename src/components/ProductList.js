@@ -22,10 +22,26 @@ const ProductList = () => {
          alert("Record is deleted");
       }
    }
+
+   const searchHandle = async(e)=>{
+      let key = e.target.value;
+      if(key){
+         let result = await fetch(`http://localhost:5000/search/${key}`);
+         result = await result.json();
+         if(result){
+            setProduct(result)
+         }
+      }
+      else{
+         getProduct();
+      }
+      
+   }
    
     return (
         <div className="product-list">    
          <h2>Product List</h2>
+         <input type ="text" onChange={searchHandle} placeholder="Search product" className="search-product-box"/>
          <ul className="bg-header-product">
             <li>S.No</li>
             <li>Name</li>
@@ -35,7 +51,7 @@ const ProductList = () => {
             <li>Operation</li>
          </ul>
 
-         {product && product.map(({name, price, category, company, _id})=>(
+         {product.length > 0 ?  product.map(({name, price, category, company, _id})=>(
             <ul key ={_id}>
             <li>S.No</li>
             <li>{name}</li>
@@ -49,7 +65,7 @@ const ProductList = () => {
            
             
          </ul>
-         ))}
+         )): <h2>No result found</h2>}
         </div>
     )
 }
