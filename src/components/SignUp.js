@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {API} from "../../src/api"
 const SignUp = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -7,7 +8,7 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     const collectData = async () => {
-        let result = await fetch("http://localhost:5000/registor", {
+        let result = await fetch(`${API}registor`, {
             method: 'post',
             body: JSON.stringify({ name, email, password }),
             headers: {
@@ -15,7 +16,10 @@ const SignUp = () => {
             }
         });
         result = await result.json();
-        localStorage.setItem("user", JSON.stringify(result));
+        localStorage.setItem("user", JSON.stringify(result.result));
+        localStorage.setItem("token", JSON.stringify(result.auth));
+        
+
         navigate("/")
     }
 

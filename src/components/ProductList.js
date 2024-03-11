@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {API} from "../../src/api";
 import {Link} from "react-router-dom";
 const ProductList = () => {
    const [product, setProduct] = useState([]); 
@@ -8,13 +9,17 @@ const ProductList = () => {
    },[]);
 
    const getProduct=async()=>{
-    let result = await fetch("http://localhost:5000/products");
+    let result = await fetch(`${API}products`,{
+      headers: {
+         authorization: JSON.parse(localStorage.getItem('token'))
+      }
+    });
     result = await result.json();
     setProduct(result);
    }
 
    const deleteProduct = async (id)=>{
-      let result = await fetch(`http://localhost:5000/product/${id}`, {
+      let result = await fetch(`${API}product/${id}`, {
          method:"Delete"
       });
       result = await result.json();
@@ -26,7 +31,7 @@ const ProductList = () => {
    const searchHandle = async(e)=>{
       let key = e.target.value;
       if(key){
-         let result = await fetch(`http://localhost:5000/search/${key}`);
+         let result = await fetch(`${API}search/${key}`);
          result = await result.json();
          if(result){
             setProduct(result)

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import {API} from "../../src/api"
 const UpdateProduct = () => {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
@@ -12,7 +13,7 @@ const UpdateProduct = () => {
     }, [])
 
     const getProductDetails = async () => {
-        let result = await fetch(`http://localhost:5000/product/${params.id}`);
+        let result = await fetch(`${API}product/${params.id}`);
         result = await result.json();
         const { name, price, category, company } = result;
         setName(name);
@@ -22,7 +23,7 @@ const UpdateProduct = () => {
     }
 
     const updateProduct = async () => {
-        let result = await fetch(`http://localhost:5000/product/${params.id}`, {
+        let result = await fetch(`${API}product/${params.id}`, {
             method: "Put",
             body: JSON.stringify({ name, price, category, company }),
             headers: {

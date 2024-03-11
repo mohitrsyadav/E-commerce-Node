@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {API} from "../../src/api"
 const AddProduct = () => {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
@@ -10,7 +11,7 @@ const AddProduct = () => {
         }
         else {
             const userId = JSON.parse(localStorage.getItem("user"))._id;
-            let result = await fetch("http://localhost:5000/add-product", {
+            let result = await fetch(`${API}add-product`, {
                 method: "post",
                 body: JSON.stringify({ name, price, category, company, userId }),
                 headers: {
@@ -18,7 +19,6 @@ const AddProduct = () => {
                 }
             });
             result = await result.json();
-            console.log(result);
         }
 
     }
